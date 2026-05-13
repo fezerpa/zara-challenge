@@ -159,6 +159,9 @@
     font-family: var(--font-family);
     text-transform: uppercase;
     position: relative;
+    color: var(--color-black);
+    -webkit-appearance: none;
+    appearance: none;
 
     &:first-child {
       margin-left: 0;
@@ -242,9 +245,6 @@
     width: 100%;
     border-collapse: collapse;
 
-    tr {
-      border-bottom: var(--border-thin);
-    }
     td {
       padding: 16px 0;
       font-size: 12px;
@@ -254,6 +254,7 @@
       vertical-align: top;
       color: var(--color-black);
       line-height: 110%;
+      border-bottom: var(--border-thin);
     }
   }
 
