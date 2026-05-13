@@ -177,9 +177,10 @@
       flex: 1;
       width: auto;
       min-width: 0;
-      overflow: hidden;
       margin-right: 0;
       min-height: var(--btn-height);
+      -webkit-transform: translateZ(0);
+      transform: translateZ(0);
     }
   }
 
