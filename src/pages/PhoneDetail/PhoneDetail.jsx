@@ -212,45 +212,50 @@ const PhoneDetail = () => {
           </table>
         </div>
 
-        {/* Productos similares */}
-        {phone.similarProducts?.length > 0 && (
-          <div className="detail__similar">
+      </div>
+
+      {/* Productos similares */}
+      {phone.similarProducts?.length > 0 && (
+        <div className="detail__similar">
+          <div className="detail__container">
             <h2 className="detail__similar-title">SIMILAR ITEMS</h2>
-            <ul
-              className="detail__similar-grid"
-              ref={sliderRef}
-              onScroll={handleSliderScroll}
-              onMouseDown={handleMouseDown}
-              onMouseMove={handleMouseMove}
-              onMouseUp={stopDragging}
-              onMouseLeave={stopDragging}
-              onClickCapture={handleClickCapture}
-            >
-              {phone.similarProducts.map((p) => (
-                <li
-                  key={p.id}
-                  className="phone-card"
-                  onClick={() => navigate(`/phone/${p.id}`)}
-                  role="button"
-                  tabIndex={0}
-                  onKeyDown={(e) =>
-                    e.key === 'Enter' && navigate(`/phone/${p.id}`)
-                  }
-                  aria-label={`View ${p.name}`}
-                >
-                  <div className="phone-card__image-wrapper">
-                    <img src={p.imageUrl} alt={p.name} draggable={false} />
+          </div>
+          <ul
+            className="detail__similar-grid"
+            ref={sliderRef}
+            onScroll={handleSliderScroll}
+            onMouseDown={handleMouseDown}
+            onMouseMove={handleMouseMove}
+            onMouseUp={stopDragging}
+            onMouseLeave={stopDragging}
+            onClickCapture={handleClickCapture}
+          >
+            {phone.similarProducts.map((p) => (
+              <li
+                key={p.id}
+                className="phone-card"
+                onClick={() => navigate(`/phone/${p.id}`)}
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) =>
+                  e.key === 'Enter' && navigate(`/phone/${p.id}`)
+                }
+                aria-label={`View ${p.name}`}
+              >
+                <div className="phone-card__image-wrapper">
+                  <img src={p.imageUrl} alt={p.name} draggable={false} />
+                </div>
+                <div className="phone-card__info">
+                  <p className="phone-card__brand">{p.brand}</p>
+                  <div className="phone-card__name-price">
+                    <p className="phone-card__name">{p.name}</p>
+                    <p className="phone-card__price">{p.basePrice} EUR</p>
                   </div>
-                  <div className="phone-card__info">
-                    <p className="phone-card__brand">{p.brand}</p>
-                    <div className="phone-card__name-price">
-                      <p className="phone-card__name">{p.name}</p>
-                      <p className="phone-card__price">{p.basePrice} EUR</p>
-                    </div>
-                  </div>
-                </li>
-              ))}
-            </ul>
+                </div>
+              </li>
+            ))}
+          </ul>
+          <div className="detail__container">
             <div className="detail__similar-track">
               <div
                 className="detail__similar-thumb"
@@ -258,8 +263,8 @@ const PhoneDetail = () => {
               />
             </div>
           </div>
-        )}
-      </div>
+        </div>
+      )}
     </div>
   )
 }
