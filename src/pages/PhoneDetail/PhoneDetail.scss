@@ -243,7 +243,8 @@
 
   &__specs-table {
     width: 100%;
-    border-collapse: collapse;
+    border-collapse: separate;
+    border-spacing: 0;
 
     td {
       padding: 16px 0;
