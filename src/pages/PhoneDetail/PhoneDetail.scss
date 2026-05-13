@@ -246,13 +246,14 @@
       border-bottom: var(--border-thin);
     }
     td {
-      padding: 12px 0;
+      padding: 16px 0;
       font-size: 12px;
       font-weight: 300;
       font-family: var(--font-family);
       letter-spacing: 0;
-      vertical-align: middle;
+      vertical-align: top;
       color: var(--color-black);
+      line-height: 110%;
     }
   }
 
@@ -280,7 +281,8 @@
     overflow-x: scroll;
     overflow-y: visible;
     list-style: none;
-    padding: 0 calc(max(0px, (100vw - 1200px) / 2) + var(--spacing-xl)) 1px calc(max(0px, (100vw - 1200px) / 2) + var(--spacing-xl));
+    padding: 0 calc(max(0px, (100vw - 1200px) / 2) + var(--spacing-xl)) 1px
+      calc(max(0px, (100vw - 1200px) / 2) + var(--spacing-xl));
     margin: 0;
 
     @media (max-width: 1024px) {

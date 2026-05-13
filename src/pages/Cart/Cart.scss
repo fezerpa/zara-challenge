@@ -179,7 +179,8 @@
   }
 
   &__pay-btn {
-    padding: 14px var(--spacing-xl);
+    width: 250px;
+    height: var(--btn-height);
     background: var(--color-black);
     color: var(--color-white);
     border: none;
@@ -192,7 +193,7 @@
 
     @media (max-width: 600px) {
       flex: 1;
-      padding: 0;
+      width: auto;
       min-height: var(--btn-height);
     }
   }
