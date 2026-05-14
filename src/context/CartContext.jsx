@@ -6,7 +6,8 @@ export const CartContext = createContext()
 export const CartProvider = ({ children }) => {
   const [cart, setCart] = useState(() => {
     const saved = localStorage.getItem('cart')
-    return saved ? JSON.parse(saved) : []
+    if (!saved) return []
+    return JSON.parse(saved.replaceAll('http://', 'https://'))
   })
 
   useEffect(() => {
