@@ -2,6 +2,26 @@
 
 Web application for browsing, searching, and managing a mobile phone catalog with a shopping cart.
 
+**Live demo:** https://zara-challenge-two.vercel.app/
+
+---
+
+## Features
+
+### Required
+- Phone catalog grid with real-time search (debounced 300 ms)
+- Results limited to 20 phones
+- Phone detail page with color and storage selectors
+- Add to cart with selected color and storage
+- Cart page with item list, total price, and remove actions
+- Cart count in the navbar
+- Cart persisted in `localStorage`
+
+### Optional
+- CSS custom properties (design tokens) for colors, spacing, typography, and borders
+- Draggable horizontal slider for similar products, edge-to-edge on all viewports
+- Deployed to Vercel: https://zara-challenge-two.vercel.app/
+
 ## Getting Started
 
 ### Prerequisites
@@ -116,5 +136,5 @@ src/
 ## Font
 
 ```css
-font-family: Helvetica, Arial, sans-serif;
+font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 ```
