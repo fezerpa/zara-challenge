@@ -11,6 +11,7 @@ const PhoneDetail = () => {
 
   const [phone, setPhone] = useState(null)
   const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(null)
   const [selectedColor, setSelectedColor] = useState(null)
   const [selectedStorage, setSelectedStorage] = useState(null)
   const [hoveredColor, setHoveredColor] = useState(null)
@@ -70,10 +71,10 @@ const PhoneDetail = () => {
   }, [phone])
 
   useEffect(() => {
-    getPhoneById(id).then((data) => {
-      setPhone(data)
-      setLoading(false)
-    })
+    getPhoneById(id)
+      .then((data) => setPhone(data))
+      .catch(() => setError('No se pudo cargar el teléfono. Inténtalo de nuevo.'))
+      .finally(() => setLoading(false))
   }, [id])
 
   const currentPrice = selectedStorage?.price ?? phone?.basePrice
@@ -95,6 +96,7 @@ const PhoneDetail = () => {
   }
 
   if (loading) return <p className="detail__loading">Cargando...</p>
+  if (error) return <p className="detail__loading">{error}</p>
   if (!phone) return <p className="detail__loading">Teléfono no encontrado</p>
 
   return (

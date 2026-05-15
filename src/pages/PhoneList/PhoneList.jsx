@@ -7,13 +7,16 @@ const PhoneList = () => {
   const [phones, setPhones] = useState([])
   const [search, setSearch] = useState('')
   const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(null)
   const navigate = useNavigate()
 
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(true)
+      setError(null)
       getPhones(search)
         .then(setPhones)
+        .catch(() => setError('No se pudieron cargar los teléfonos. Inténtalo de nuevo.'))
         .finally(() => setLoading(false))
     }, 300)
     return () => clearTimeout(timer)
@@ -34,6 +37,8 @@ const PhoneList = () => {
 
       {loading ? (
         <p className="phone-list__loading">Cargando...</p>
+      ) : error ? (
+        <p className="phone-list__loading">{error}</p>
       ) : (
         <ul className="phone-list__grid">
           {phones.map((phone) => (
