@@ -253,21 +253,17 @@ const PhoneDetail = () => {
             onClickCapture={handleClickCapture}
           >
             {phone.similarProducts.map((p) => (
-              <li
-                key={p.id}
-                className="phone-card"
-                onClick={() => navigate(`/phone/${p.id}`)}
-                role="button"
-                tabIndex={0}
-                onKeyDown={(e) =>
-                  e.key === 'Enter' && navigate(`/phone/${p.id}`)
-                }
-                aria-label={`View ${p.name}`}
-              >
-                <div className="phone-card__image-wrapper">
-                  <img src={p.imageUrl} alt={p.name} draggable={false} />
+              <li key={p.id} className="phone-card">
+                <button
+                  type="button"
+                  className="phone-card__link"
+                  onClick={() => navigate(`/phone/${p.id}`)}
+                  aria-label={`View ${p.name} by ${p.brand}`}
+                />
+                <div className="phone-card__image-wrapper" aria-hidden="true">
+                  <img src={p.imageUrl} alt="" draggable={false} />
                 </div>
-                <div className="phone-card__info">
+                <div className="phone-card__info" aria-hidden="true">
                   <p className="phone-card__brand">{p.brand}</p>
                   <div className="phone-card__name-price">
                     <p className="phone-card__name">{p.name}</p>

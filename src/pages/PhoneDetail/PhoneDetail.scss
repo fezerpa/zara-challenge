@@ -341,10 +341,17 @@
         border-left: none;
       }
 
-      &:focus-visible {
-        outline: 2px solid var(--color-black);
-        outline-offset: -2px;
-        z-index: 1;
+      .phone-card__link {
+        background: none;
+        border: none;
+        padding: 0;
+        cursor: pointer;
+        pointer-events: auto;
+
+        &:focus-visible {
+          outline: 2px solid var(--color-black);
+          outline-offset: -2px;
+        }
       }
 
       * {
