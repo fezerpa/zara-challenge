@@ -43,6 +43,12 @@
 
   &__item {
     display: flex;
+    animation: item-enter 0.35s ease;
+
+    &--removing {
+      animation: item-remove 0.35s ease forwards;
+      pointer-events: none;
+    }
   }
 
   &__item-image-wrap {
@@ -182,6 +188,16 @@
       border: none;
       box-shadow: inset 0 0 0 1px var(--color-black);
     }
+  }
+
+  @keyframes item-enter {
+    from { opacity: 0; transform: translateX(-16px); }
+    to   { opacity: 1; transform: translateX(0); }
+  }
+
+  @keyframes item-remove {
+    from { opacity: 1; transform: translateX(0); }
+    to   { opacity: 0; transform: translateX(-24px); }
   }
 
   &__pay-btn {

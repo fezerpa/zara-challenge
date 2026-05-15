@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useCart } from '../../hooks/useCart'
 import './Cart.scss'
@@ -5,6 +6,15 @@ import './Cart.scss'
 const Cart = () => {
   const { cart, removeFromCart, totalPrice } = useCart()
   const navigate = useNavigate()
+  const [removingIndex, setRemovingIndex] = useState(null)
+
+  const handleRemove = (index) => {
+    setRemovingIndex(index)
+    setTimeout(() => {
+      removeFromCart(index)
+      setRemovingIndex(null)
+    }, 350)
+  }
 
   return (
     <div className="cart">
@@ -17,7 +27,10 @@ const Cart = () => {
         {cart.length > 0 && (
           <ul className="cart__list">
             {cart.map((item, index) => (
-              <li key={index} className="cart__item">
+              <li
+                key={index}
+                className={`cart__item${removingIndex === index ? ' cart__item--removing' : ''}`}
+              >
                 <div className="cart__item-image-wrap">
                   <img src={item.image} alt={item.name} className="cart__item-image" />
                 </div>
@@ -30,8 +43,9 @@ const Cart = () => {
                   </div>
                   <button
                     className="cart__item-remove"
-                    onClick={() => removeFromCart(index)}
+                    onClick={() => handleRemove(index)}
                     aria-label={`Eliminar ${item.name} del carrito`}
+                    disabled={removingIndex !== null}
                   >
                     Remove
                   </button>
