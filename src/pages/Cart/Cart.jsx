@@ -1,11 +1,10 @@
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { useCart } from '../../hooks/useCart'
 import './Cart.scss'
 
 const Cart = () => {
   const { cart, removeFromCart, totalPrice } = useCart()
-  const navigate = useNavigate()
   const [removingIndex, setRemovingIndex] = useState(null)
 
   const handleRemove = (index) => {
@@ -44,7 +43,7 @@ const Cart = () => {
                   <button
                     className="cart__item-remove"
                     onClick={() => handleRemove(index)}
-                    aria-label={`Eliminar ${item.name} del carrito`}
+                    aria-label={`Remove ${item.name} from cart`}
                     disabled={removingIndex !== null}
                   >
                     Remove
@@ -57,9 +56,9 @@ const Cart = () => {
       </div>
 
       <div className="cart__footer">
-        <button className="cart__continue-btn" onClick={() => navigate('/')}>
+        <Link to="/" className="cart__continue-btn">
           CONTINUE SHOPPING
-        </button>
+        </Link>
         {cart.length > 0 && (
           <>
             <span className="cart__total">

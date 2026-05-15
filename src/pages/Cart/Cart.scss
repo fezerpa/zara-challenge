@@ -178,6 +178,10 @@
     cursor: pointer;
     font-family: var(--font-family);
     margin-right: auto;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 
     @media (max-width: 600px) {
       flex: 1;
