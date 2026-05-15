@@ -16,6 +16,7 @@ const PhoneDetail = () => {
   const [selectedStorage, setSelectedStorage] = useState(null)
   const [hoveredColor, setHoveredColor] = useState(null)
   const [added, setAdded] = useState(false)
+  const [validationMsg, setValidationMsg] = useState('')
   const sliderRef = useRef(null)
   const [thumbLeft, setThumbLeft] = useState(0)
   const [thumbWidth, setThumbWidth] = useState(100)
@@ -85,6 +86,21 @@ const PhoneDetail = () => {
   const currentImage =
     selectedColor?.imageUrl ?? phone?.colorOptions?.[0]?.imageUrl ?? ''
   const canAddToCart = selectedColor && selectedStorage
+
+  useEffect(() => {
+    setValidationMsg('')
+  }, [selectedStorage, selectedColor])
+
+  const handleValidationClick = () => {
+    if (canAddToCart || added) return
+    if (!selectedStorage && !selectedColor) {
+      setValidationMsg('Select a storage and color option')
+    } else if (!selectedStorage) {
+      setValidationMsg('Select a storage option')
+    } else {
+      setValidationMsg('Select a color option')
+    }
+  }
 
   const handleAddToCart = () => {
     if (!canAddToCart || added) return
@@ -200,14 +216,21 @@ const PhoneDetail = () => {
               </p>
             </div>
 
-            <button
-              className={`detail__add-btn${added ? ' detail__add-btn--added' : ''}`}
-              onClick={handleAddToCart}
-              disabled={!canAddToCart}
-              aria-disabled={!canAddToCart || added}
-            >
-              {added ? 'ADDED TO CART' : 'ADD TO CART'}
-            </button>
+            <div className="detail__add-btn-wrap" onClick={handleValidationClick}>
+              <button
+                className={`detail__add-btn${added ? ' detail__add-btn--added' : ''}`}
+                onClick={handleAddToCart}
+                disabled={!canAddToCart}
+                aria-disabled={!canAddToCart || added}
+              >
+                {added ? 'ADDED TO CART' : 'ADD TO CART'}
+              </button>
+            </div>
+            {validationMsg && (
+              <p className="detail__validation" role="alert">
+                {validationMsg}
+              </p>
+            )}
           </div>
         </div>
 

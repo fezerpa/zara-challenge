@@ -171,13 +171,12 @@
     }
 
     &--active {
-      border-color: var(--color-black);
-      background: var(--color-white);
-      color: var(--color-black);
-      box-shadow: -1px 0 0 0 var(--color-black);
+      border: 1px solid var(--color-black);
+      position: relative;
+      z-index: 1;
 
       &:first-child {
-        box-shadow: none;
+        border-left: 1px solid var(--color-black);
       }
     }
   }
@@ -230,7 +229,7 @@
     &:disabled {
       background: var(--color-disabled-bg);
       color: var(--color-disabled-text);
-      cursor: not-allowed;
+      pointer-events: none;
     }
 
     &--added {
@@ -239,6 +238,16 @@
       cursor: default;
       border: none;
     }
+  }
+
+  &__add-btn-wrap {
+    cursor: not-allowed;
+  }
+
+  &__validation {
+    font-size: 11px;
+    color: var(--color-danger);
+    margin: 4px 0 0;
   }
 
   &__specs {
