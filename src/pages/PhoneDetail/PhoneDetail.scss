@@ -260,7 +260,8 @@
     border-collapse: separate;
     border-spacing: 0;
 
-    td {
+    td,
+    th {
       padding: 16px 0;
       font-size: 12px;
       font-weight: 300;
@@ -275,6 +276,7 @@
 
   &__specs-key {
     text-transform: uppercase;
+    text-align: left;
     width: 40%;
   }
 
