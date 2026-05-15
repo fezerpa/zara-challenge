@@ -10,6 +10,10 @@ const PhoneList = () => {
   const [error, setError] = useState(null)
 
   useEffect(() => {
+    document.title = 'Smartphones'
+  }, [])
+
+  useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(true)
       setError(null)

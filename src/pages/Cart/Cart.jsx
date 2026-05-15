@@ -1,10 +1,14 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useCart } from '../../hooks/useCart'
 import './Cart.scss'
 
 const Cart = () => {
   const { cart, removeFromCart, totalPrice } = useCart()
+
+  useEffect(() => {
+    document.title = 'Cart'
+  }, [])
   const [removingIndex, setRemovingIndex] = useState(null)
 
   const handleRemove = (index) => {

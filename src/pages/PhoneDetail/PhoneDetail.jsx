@@ -73,7 +73,10 @@ const PhoneDetail = () => {
 
   useEffect(() => {
     getPhoneById(id)
-      .then((data) => setPhone(data))
+      .then((data) => {
+        setPhone(data)
+        document.title = data.name
+      })
       .catch(() => setError('Could not load phone. Please try again.'))
       .finally(() => setLoading(false))
   }, [id])
@@ -190,6 +193,7 @@ const PhoneDetail = () => {
               </div>
               <p
                 className="detail__color-label"
+                aria-hidden="true"
                 style={{ color: (hoveredColor ?? selectedColor) ? '#000' : '#fff' }}
               >
                 {(hoveredColor ?? selectedColor)?.name ?? ' '}
@@ -226,7 +230,7 @@ const PhoneDetail = () => {
                 'Screen Refresh Rate': phone.specs.screenRefreshRate,
               }).map(([key, val]) => (
                 <tr key={key}>
-                  <td className="detail__specs-key">{key}</td>
+                  <th scope="row" className="detail__specs-key">{key}</th>
                   <td className="detail__specs-val">{val}</td>
                 </tr>
               ))}
@@ -244,6 +248,7 @@ const PhoneDetail = () => {
           </div>
           <ul
             className="detail__similar-grid"
+            aria-label="Similar items"
             ref={sliderRef}
             onScroll={handleSliderScroll}
             onMouseDown={handleMouseDown}
