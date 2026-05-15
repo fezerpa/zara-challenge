@@ -152,26 +152,33 @@
     min-width: 95px;
     padding: 0 24px;
     border: 1px solid var(--color-border);
-    margin-left: -1px;
+    border-left: none;
     background: var(--color-white);
     cursor: pointer;
     font-size: 11px;
     font-family: var(--font-family);
     text-transform: uppercase;
-    position: relative;
     color: var(--color-black);
     -webkit-appearance: none;
     appearance: none;
 
     &:first-child {
-      margin-left: 0;
+      border-left: 1px solid var(--color-border);
+    }
+
+    &:focus-visible {
+      outline-offset: -2px;
     }
 
     &--active {
       border-color: var(--color-black);
       background: var(--color-white);
       color: var(--color-black);
-      z-index: 1;
+      box-shadow: -1px 0 0 0 var(--color-black);
+
+      &:first-child {
+        box-shadow: none;
+      }
     }
   }
 
@@ -332,6 +339,12 @@
 
       & + .phone-card {
         border-left: none;
+      }
+
+      &:focus-visible {
+        outline: 2px solid var(--color-black);
+        outline-offset: -2px;
+        z-index: 1;
       }
 
       * {

@@ -106,6 +106,17 @@
   padding: var(--spacing-sm);
   gap: var(--spacing-sm);
 
+  &__link {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+
+    &:focus-visible {
+      outline: 2px solid var(--color-black);
+      outline-offset: -2px;
+    }
+  }
+
   &::before {
     content: '';
     position: absolute;

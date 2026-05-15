@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { getPhones } from '../../services/api'
 import './PhoneList.scss'
 
@@ -8,7 +8,6 @@ const PhoneList = () => {
   const [search, setSearch] = useState('')
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
-  const navigate = useNavigate()
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -16,7 +15,7 @@ const PhoneList = () => {
       setError(null)
       getPhones(search)
         .then(setPhones)
-        .catch(() => setError('No se pudieron cargar los teléfonos. Inténtalo de nuevo.'))
+        .catch(() => setError('Could not load phones. Please try again.'))
         .finally(() => setLoading(false))
     }, 300)
     return () => clearTimeout(timer)
@@ -30,7 +29,7 @@ const PhoneList = () => {
           placeholder="Search for a smartphone..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          aria-label="Buscar teléfonos"
+          aria-label="Search for a smartphone"
         />
       </div>
       <span className="phone-list__count">{phones.length} RESULTS</span>
@@ -55,21 +54,16 @@ const PhoneList = () => {
       ) : (
         <ul className="phone-list__grid">
           {phones.map((phone) => (
-            <li
-              key={phone.id}
-              className="phone-card"
-              onClick={() => navigate(`/phone/${phone.id}`)}
-              role="button"
-              tabIndex={0}
-              onKeyDown={(e) =>
-                e.key === 'Enter' && navigate(`/phone/${phone.id}`)
-              }
-              aria-label={`Ver detalle de ${phone.name}`}
-            >
-              <div className="phone-card__image-wrapper">
-                <img src={phone.imageUrl} alt={phone.name} />
+            <li key={phone.id} className="phone-card">
+              <Link
+                to={`/phone/${phone.id}`}
+                className="phone-card__link"
+                aria-label={`View ${phone.name} by ${phone.brand}`}
+              />
+              <div className="phone-card__image-wrapper" aria-hidden="true">
+                <img src={phone.imageUrl} alt="" />
               </div>
-              <div className="phone-card__info">
+              <div className="phone-card__info" aria-hidden="true">
                 <p className="phone-card__brand">{phone.brand}</p>
                 <div className="phone-card__name-price">
                   <p className="phone-card__name">{phone.name}</p>

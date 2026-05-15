@@ -74,7 +74,7 @@ const PhoneDetail = () => {
   useEffect(() => {
     getPhoneById(id)
       .then((data) => setPhone(data))
-      .catch(() => setError('No se pudo cargar el teléfono. Inténtalo de nuevo.'))
+      .catch(() => setError('Could not load phone. Please try again.'))
       .finally(() => setLoading(false))
   }, [id])
 
@@ -117,7 +117,7 @@ const PhoneDetail = () => {
     </div>
   )
   if (error) return <p className="detail__loading">{error}</p>
-  if (!phone) return <p className="detail__loading">Teléfono no encontrado</p>
+  if (!phone) return <p className="detail__loading">Phone not found</p>
 
   return (
     <div className="detail">
@@ -144,7 +144,7 @@ const PhoneDetail = () => {
             {/* Selector de almacenamiento */}
             <div className="detail__section">
               <h2 className="detail__section-title">
-                STORAGE ¿HOW MUCH SPACE DO YOU NEED?
+                STORAGE. HOW MUCH SPACE DO YOU NEED?
               </h2>
               <div className="detail__options">
                 {phone.storageOptions.map((opt) => (

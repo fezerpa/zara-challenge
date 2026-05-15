@@ -22,7 +22,7 @@ const Cart = () => {
         <h1 className="cart__title">CART ({cart.length})</h1>
 
         {cart.length === 0 && (
-          <p className="cart__empty">Tu carrito está vacío.</p>
+          <p className="cart__empty">Your cart is empty.</p>
         )}
         {cart.length > 0 && (
           <ul className="cart__list">
