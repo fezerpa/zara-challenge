@@ -15,6 +15,7 @@ const PhoneDetail = () => {
   const [selectedColor, setSelectedColor] = useState(null)
   const [selectedStorage, setSelectedStorage] = useState(null)
   const [hoveredColor, setHoveredColor] = useState(null)
+  const [added, setAdded] = useState(false)
   const sliderRef = useRef(null)
   const [thumbLeft, setThumbLeft] = useState(0)
   const [thumbWidth, setThumbWidth] = useState(100)
@@ -83,7 +84,7 @@ const PhoneDetail = () => {
   const canAddToCart = selectedColor && selectedStorage
 
   const handleAddToCart = () => {
-    if (!canAddToCart) return
+    if (!canAddToCart || added) return
     addToCart({
       id: phone.id,
       name: phone.name,
@@ -93,6 +94,8 @@ const PhoneDetail = () => {
       storage: selectedStorage.capacity,
       price: currentPrice,
     })
+    setAdded(true)
+    setTimeout(() => setAdded(false), 2000)
   }
 
   if (loading) return <p className="detail__loading">Cargando...</p>
@@ -177,12 +180,12 @@ const PhoneDetail = () => {
             </div>
 
             <button
-              className="detail__add-btn"
+              className={`detail__add-btn${added ? ' detail__add-btn--added' : ''}`}
               onClick={handleAddToCart}
               disabled={!canAddToCart}
-              aria-disabled={!canAddToCart}
+              aria-disabled={!canAddToCart || added}
             >
-              ADD TO CART
+              {added ? 'ADDED TO CART' : 'ADD TO CART'}
             </button>
           </div>
         </div>

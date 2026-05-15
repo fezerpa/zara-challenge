@@ -225,6 +225,13 @@
       color: var(--color-disabled-text);
       cursor: not-allowed;
     }
+
+    &--added {
+      background: #3a7d44;
+      color: var(--color-white);
+      cursor: default;
+      border: none;
+    }
   }
 
   &__specs {
