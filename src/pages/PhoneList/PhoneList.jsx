@@ -36,7 +36,20 @@ const PhoneList = () => {
       <span className="phone-list__count">{phones.length} RESULTS</span>
 
       {loading ? (
-        <p className="phone-list__loading">Cargando...</p>
+        <ul className="phone-list__grid">
+          {Array.from({ length: 10 }).map((_, i) => (
+            <li key={i} className="phone-card phone-card--skeleton">
+              <div className="skeleton phone-card__skeleton-image" />
+              <div className="phone-card__info">
+                <div className="skeleton phone-card__skeleton-brand" />
+                <div className="phone-card__name-price">
+                  <div className="skeleton phone-card__skeleton-name" />
+                  <div className="skeleton phone-card__skeleton-price" />
+                </div>
+              </div>
+            </li>
+          ))}
+        </ul>
       ) : error ? (
         <p className="phone-list__loading">{error}</p>
       ) : (

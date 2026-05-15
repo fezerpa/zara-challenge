@@ -67,6 +67,31 @@
   }
 }
 
+.phone-card--skeleton {
+  pointer-events: none;
+
+  .phone-card__skeleton-image {
+    width: 182px;
+    height: 228px;
+  }
+
+  .phone-card__skeleton-brand {
+    height: 10px;
+    width: 40%;
+    margin-bottom: 8px;
+  }
+
+  .phone-card__skeleton-name {
+    height: 10px;
+    width: 60%;
+  }
+
+  .phone-card__skeleton-price {
+    height: 10px;
+    width: 25%;
+  }
+}
+
 .phone-card {
   cursor: pointer;
   position: relative;

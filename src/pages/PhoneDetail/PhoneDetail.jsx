@@ -98,7 +98,24 @@ const PhoneDetail = () => {
     setTimeout(() => setAdded(false), 2000)
   }
 
-  if (loading) return <p className="detail__loading">Cargando...</p>
+  if (loading) return (
+    <div className="detail">
+      <div className="detail__container">
+        <div className="detail__main">
+          <div className="skeleton detail__skeleton-image" />
+          <div className="detail__info">
+            <div className="detail__skeleton-header">
+              <div className="skeleton detail__skeleton-name" />
+              <div className="skeleton detail__skeleton-price" />
+            </div>
+            <div className="skeleton detail__skeleton-section" />
+            <div className="skeleton detail__skeleton-section" />
+            <div className="skeleton detail__skeleton-btn" />
+          </div>
+        </div>
+      </div>
+    </div>
+  )
   if (error) return <p className="detail__loading">{error}</p>
   if (!phone) return <p className="detail__loading">Teléfono no encontrado</p>
 
